@@ -1,0 +1,47 @@
+<?php
+/**
+ * @var \Smartosc\Article\Block\Article $block
+ */
+$detail = $block->getArticleById();
+?>
+<?php if ($block->canShowBlock()): ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                font-size: 24px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+    <table >
+        <tr>
+            <th>Image</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        <tr>
+            <td><img style="width: 200px; height: 100px" src="<?= $detail['image']?>"/> </td>
+            <td><?=$detail['article_id']?></td>
+            <td><?=$detail['title']?></td>
+            <td><?=$detail['content']?></td>
+        </tr>
+    </table>
+    </body>
+    </html>
+<?php endif; ?>

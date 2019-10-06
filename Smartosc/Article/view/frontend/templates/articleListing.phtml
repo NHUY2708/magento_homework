@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @var \Smartosc\Article\Block\Display $block
+ */
+$arrArticle = $block->getArticle();
+?>
+<?php if ($block->canShowBlock()): ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                font-size: 24px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            .active {
+                background-color: #ba4000 !important;
+            }
+        </style>
+    </head>
+    <body>
+    <table >
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Active</th>
+        </tr>
+        <?php foreach ($arrArticle['item'] as $article) {
+            ?>
+            <tr>
+                <td><img style="width: 200px; height: 100px" src="<?= $article['image']?>"/> </td>
+                <td><?= $article['title']?></td>
+                <td><a href="Detail?id=<?=$article['article_id']?>">Detail</a></td>
+            </tr>
+            <?php
+        } ?>
+    </table>
+    <br>
+    <div class="w3-show-inline-block">
+        <div class="w3-bar w3-border">
+            <?php
+            for ($i=1;$i<= $arrArticle['page']['totalPage']; $i++) {
+                ?>
+                <a href="Display?page=<?=$i?>" class="w3-bar-item w3-button <?= $arrArticle['page']['CurPage']==$i ?  'active' : ''  ?>"><?= $i ?></a>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+
+    </body>
+    </html>
+<?php endif; ?>
